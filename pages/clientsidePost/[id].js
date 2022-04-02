@@ -4,26 +4,36 @@ import { useRouter } from "next/router"
 import useSWR from "swr"
 import { useEffect, useState } from "react/cjs/react.development"
 
+const fetcher = async (url) => {
+  const res = await fetch(url)
+  if (!res.ok){
+    throw Error('not so ok')
+  }
+  const data = await res.json()
+  return data
+}
+function usePost(id){
+  const {data, error} = useSWR(`https://jsonplaceholder.typicode.com/posts/${id}`, fetcher)
+  return {
+    post: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
 function PostDetail() {
   const router = useRouter()
-  const { id } = router.query
-  const [post, setPost] = useState()
-  const url = `https://jsonplaceholder.typicode.com/posts/${id}`
-  const { data, error } = useSWR(id ? url : null, id ? fetcher : null)
-
-  const fetcher = (...args) =>
-    fetch(...args).then((res) => {
-      res.json()
-    })
-
-  if (error)
+  // const [post, setPost] = useState()
+  const {id} = router.query
+  // const {data, error} = useSWR(id ? `https://jsonplaceholder.typicode.com/posts/${id}` : null, id ? fetcher : null)
+  const {post, isLoading, isError} = usePost(id)
+  if (isError)
     return (
       <div className="container">
         <p className={styles.title}>Error fetching data...</p>
       </div>
     )
 
-  if (!data)
+  if (isLoading)
     return (
       <div className="container">
         <p className={styles.title}>Loading</p>
