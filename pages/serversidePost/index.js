@@ -1,16 +1,16 @@
 import styles from "../../styles/Home.module.css"
 import Link from "next/link"
 
-function IndexPost({ allPosts }) {
+function IndexPost({ posts }) {
   return (
     <div className="container">
       <h2 className={styles.title}>
         <a href="#">Posts List: </a>
       </h2>
       <ul>
-        {allPosts?.map((post) => (
+        {posts?.map((post) => (
           <li className={styles.list_item} key={post.id}>
-            <Link href={`/post/${encodeURIComponent(post.id)}`}>
+            <Link href={`/serversidePost/${encodeURIComponent(post.id)}`}>
               <a>{post.title}</a>
             </Link>
           </li>
@@ -21,12 +21,14 @@ function IndexPost({ allPosts }) {
 }
 export default IndexPost
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
+  console.log("Getting post list from Server...")
   const res = await fetch("https://jsonplaceholder.typicode.com/posts")
   const allPosts = await res.json()
+  const posts = await allPosts.slice(5, 15)
   return {
     props: {
-      allPosts,
+      posts,
     },
   }
 }
