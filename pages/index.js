@@ -35,7 +35,7 @@ export default function Home() {
             <p>Using CSR with SWR</p>
           </a>
 
-          <a href="/api" className={styles.card}>
+          <a href="/api/post?id=1" className={styles.card}>
             <h2>API &rarr;</h2>
             <p>Using API</p>
           </a>
