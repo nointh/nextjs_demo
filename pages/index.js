@@ -1,7 +1,7 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head"
+import Link from "next/link"
+import Image from "next/image"
+import styles from "../styles/Home.module.css"
 
 export default function Home() {
   return (
@@ -17,34 +17,27 @@ export default function Home() {
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
-
         <div className={styles.grid}>
           <a href="/serversidePost" className={styles.card}>
             <h2>SSR: Server-side rendering &rarr;</h2>
-            <p>Using SSR with <span >getServerSideProps</span></p>
+            <p>
+              Using SSR with <span>getServerSideProps</span>
+            </p>
           </a>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
+          <a href="/staticsitePost" className={styles.card}>
             <h2>SSG: Static-site generation &rarr;</h2>
             <p>Using SSG with getStaticProps</p>
           </a>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
+          <a href="/clientsidePost" className={styles.card}>
             <h2>CSR: Client-side rendering &rarr;</h2>
             <p>Using CSR with SWR</p>
           </a>
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
+          <a href="/api" className={styles.card}>
+            <h2>API &rarr;</h2>
+            <p>Using API</p>
           </a>
         </div>
       </main>
@@ -55,7 +48,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>

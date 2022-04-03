@@ -10,7 +10,7 @@ function IndexPost({ allPosts }) {
       <ul>
         {allPosts?.map((post) => (
           <li className={styles.list_item} key={post.id}>
-            <Link href={`/post/${encodeURIComponent(post.id)}`}>
+            <Link href={`/staticsitePost/${encodeURIComponent(post.id)}`}>
               <a>{post.title}</a>
             </Link>
           </li>

@@ -24,8 +24,7 @@ export default IndexPost
 export async function getServerSideProps() {
   console.log("Getting post list from Server...")
   const res = await fetch("https://jsonplaceholder.typicode.com/posts")
-  const allPosts = await res.json()
-  const posts = await allPosts.slice(5, 15)
+  const posts = await res.json()
   return {
     props: {
       posts,
